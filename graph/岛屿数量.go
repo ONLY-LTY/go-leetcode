@@ -21,7 +21,7 @@ func numIslands(grid [][]byte) int {
 
 // 深度遍历
 func dfs(grid [][]byte, r int, c int) {
-	if outArea(grid, r, c) {
+	if OutArea(grid, r, c) {
 		return
 	}
 	if grid[r][c] != '1' {
@@ -35,7 +35,7 @@ func dfs(grid [][]byte, r int, c int) {
 	dfs(grid, r, c+1)
 }
 
-// 是否在数组内
-func outArea(grid [][]byte, r int, c int) bool {
+// OutArea 是否在数组内
+func OutArea(grid [][]byte, r int, c int) bool {
 	return r < 0 || r >= len(grid) || c < 0 || c >= len(grid[0])
 }
