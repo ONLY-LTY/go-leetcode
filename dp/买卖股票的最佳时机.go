@@ -26,13 +26,14 @@ import (
 // 输出：0
 // 解释：在这种情况下, 没有交易完成, 所以最大利润为 0。
 func maxProfit(prices []int) int {
-	//当天之前股价最小值
+	//定义当天之前股价最小值
 	previousMin := math.MaxInt
 	maxProfit := 0
 	for _, price := range prices {
 		if price < previousMin {
 			previousMin = price
 		}
+		//当天-最小值 就是最大收益
 		maxProfit = util.Max(maxProfit, price-previousMin)
 	}
 	return maxProfit
@@ -65,16 +66,19 @@ func newIntArray(row int, cell int) [][]int {
 // 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0
 func maxProfit2(prices []int) int {
 	length := len(prices)
+	//dp[i][0] 表示第i天不持有股票最大利润
+	//dp[i][1] 表示第i天持有股票的最大利润
 	dp := newIntArray(length, 2)
 	//第一天不持有股票 利润
 	dp[0][0] = 0
 	//第一天持有股票 利润
 	dp[0][1] = -prices[0]
 
+	//填充dp数组
 	for i := 1; i < length; i++ {
 		//今天不持有股票 最大利润
 		//1. 昨天本来就不持有股票
-		//2. 昨天持有股票，今天买了
+		//2. 昨天持有股票，今天卖了
 		dp[i][0] = util.Max(dp[i-1][0], dp[i-1][1]+prices[i])
 		//今天持有股票 最大利润
 		//1. 昨天本来就持有股票 今天不操作

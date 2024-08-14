@@ -1,4 +1,4 @@
-package dp
+package array
 
 // maxArea
 // 11. 盛最多水的容器

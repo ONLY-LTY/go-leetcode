@@ -43,10 +43,7 @@ func dfsLetterCombinations(digits string, level int, path string, res *[]string)
 	number := string(digits[level])
 	letter := dict[number]
 	for i := 0; i < len(letter); i++ {
-		//添加元素
-		nextPath := path + letter[i]
 		//遍历
-		dfsLetterCombinations(digits, level+1, nextPath, res)
-		//回溯 这里没有数组 不需要回溯
+		dfsLetterCombinations(digits, level+1, path+letter[i], res)
 	}
 }

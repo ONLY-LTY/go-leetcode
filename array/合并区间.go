@@ -19,6 +19,7 @@ import (
 // 输出：[[1,5]]
 // 解释：区间 [1,4] 和 [4,5] 可被视为重叠区间
 func merge(intervals [][]int) [][]int {
+	//原区间排序
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i][0] < intervals[j][0]
 	})
