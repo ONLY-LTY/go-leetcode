@@ -1,7 +1,5 @@
 package btree
 
-import "go-leetcode/util"
-
 // 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 //
 // 百度百科中最近公共祖先的定义为：
@@ -29,45 +27,34 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 }
 
 func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
-	if root == nil || q == nil || p == nil {
-		return nil
-	}
-	var pPath *[]*TreeNode
-	if getPath(root, p, pPath) {
-		var qPath *[]*TreeNode
-		if getPath(root, q, qPath) {
-			return getLowestCommon(*pPath, *qPath)
+	pathP := make([]*TreeNode, 0)
+	findPath(root, p, &pathP)
+	pathQ := make([]*TreeNode, 0)
+	findPath(root, q, &pathQ)
+
+	var ancestor *TreeNode
+	for i := 0; i < len(pathP) && i < len(pathQ); i++ {
+		if pathP[i] == pathQ[i] {
+			ancestor = pathP[i]
+		} else {
+			break
 		}
 	}
-	return nil
-}
-func getLowestCommon(p, q []*TreeNode) *TreeNode {
-	var node *TreeNode
-	length := util.Min(len(p), len(q))
-	for i := 0; i < length; i++ {
-		if p[i] == q[i] {
-			node = p[i]
-		}
-	}
-	return node
+	return ancestor
 }
 
-func getPath(root *TreeNode, node *TreeNode, stack *[]*TreeNode) bool {
-	*stack = append(*stack, root)
-	if root == node {
+func findPath(root, target *TreeNode, path *[]*TreeNode) bool {
+	if root == nil {
+		return false
+	}
+	*path = append(*path, root)
+	if root == target {
 		return true
 	}
-	if root.Left != nil {
-		if getPath(root.Left, node, stack) {
-			return true
-		}
+	if (root.Left != nil && findPath(root.Left, target, path)) ||
+		(root.Right != nil && findPath(root.Right, target, path)) {
+		return true
 	}
-
-	if root.Right != nil {
-		if getPath(root.Left, node, stack) {
-			return true
-		}
-	}
-	*stack = (*stack)[:len(*stack)-1]
+	*path = (*path)[:len(*path)-1]
 	return false
 }
