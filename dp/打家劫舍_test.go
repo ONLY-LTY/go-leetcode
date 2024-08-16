@@ -2,6 +2,7 @@ package dp
 
 import (
 	"github.com/stretchr/testify/assert"
+	"go-leetcode/btree"
 	"testing"
 )
 
@@ -19,5 +20,5 @@ func TestRob(t *testing.T) {
 	assert.Equal(t, 3, rob2(nums))
 
 	nums = []int{3, 2, 3, -1, 3, -1, 1}
-	assert.Equal(t, 7, rob3(createBinaryTree(nums)))
+	assert.Equal(t, 7, rob3(btree.CreateBinaryTree(nums)))
 }

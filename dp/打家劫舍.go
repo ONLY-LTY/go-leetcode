@@ -33,11 +33,16 @@ func rob(nums []int) int {
 	if length == 1 {
 		return nums[0]
 	}
+	//如果偷第i房间，那么dp[i] = dp[i - 2] + nums[i] ，即：第i-1房一定是不考虑的，找出 下标i-2（包括i-2）以内的房屋，最多可以偷窃的金额为dp[i-2] 加上第i房间偷到的钱。
+	//
+	//如果不偷第i房间，那么dp[i] = dp[i - 1]，即考 虑i-1房，（注意这里是考虑，并不是一定要偷i-1房，这是很多同学容易混淆的点）
+	//
+	//然后dp[i]取最大值，即dp[i] = max(dp[i - 2] + nums[i], dp[i - 1]);
 	dp := make([]int, length)
 	dp[0] = nums[0]
 	dp[1] = util.Max(nums[0], nums[1])
 	for i := 2; i < length; i++ {
-		dp[i] = util.Max(dp[i-2]+nums[i], dp[i])
+		dp[i] = util.Max(dp[i-2]+nums[i], dp[i-1])
 	}
 	return dp[length-1]
 }
@@ -51,7 +56,7 @@ func robRange(nums []int, start int, end int) int {
 	dp[0] = nums[start]
 	dp[1] = util.Max(nums[start], nums[start+1])
 	for i := 2; i < length; i++ {
-		dp[i] = util.Max(dp[i-2]+nums[i+start], dp[i])
+		dp[i] = util.Max(dp[i-2]+nums[i+start], dp[i-1])
 	}
 	return dp[length-1]
 }
@@ -126,44 +131,4 @@ func dp(node *btree.TreeNode) []int {
 	doNotRob := util.Max(left[0], left[1]) + util.Max(right[0], right[1])
 
 	return []int{doNotRob, doRob}
-}
-
-func createBinaryTree(arr []int) *btree.TreeNode {
-	// 如果数组为空，则返回nil
-	if len(arr) == 0 {
-		return nil
-	}
-
-	// 创建一个节点的队列，用于按层构建二叉树
-	var queue []*btree.TreeNode
-
-	// 创建根节点，并将其加入队列
-	root := &btree.TreeNode{Val: arr[0]}
-	queue = append(queue, root)
-
-	// 初始化一个索引i，它将在数组中移动
-	i := 1
-
-	// 迭代直到数组所有元素都被处理
-	for i < len(arr) && len(queue) > 0 {
-		// 出队列
-		node := queue[0]
-		queue = queue[1:]
-
-		// 如果左孩子存在，则创建它并加入队列
-		if i < len(arr) && arr[i] != -1 { // 假设-1表示nil节点
-			node.Left = &btree.TreeNode{Val: arr[i]}
-			queue = append(queue, node.Left)
-		}
-		i++
-
-		// 如果右孩子存在，则创建它并加入队列
-		if i < len(arr) && arr[i] != -1 { // 假设-1表示nil节点
-			node.Right = &btree.TreeNode{Val: arr[i]}
-			queue = append(queue, node.Right)
-		}
-		i++
-	}
-
-	return root
 }
