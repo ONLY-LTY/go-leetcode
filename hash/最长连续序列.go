@@ -20,7 +20,7 @@ func longestConsecutive(nums []int) int {
 	}
 	res := 0
 	for _, num := range nums {
-		//num-1不存在 num开始
+		//num-1不存在 从num开始遍历
 		if !exists(set, num-1) {
 			curNum := num + 1
 			curCount := 1

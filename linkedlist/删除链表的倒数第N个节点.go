@@ -7,10 +7,12 @@ package linkedlist
 // 因为要删除该节点，所以要移动到该节点的前一个才能删除，所以循环结束条件为 start.next != null
 // 删除后返回 pre.next，为什么不直接返回 head 呢，因为 head 有可能是被删掉的点
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	pre := &ListNode{}
-	pre.Next = head
-	slow := pre
-	fast := pre
+	dummyNode := &ListNode{}
+	dummyNode.Next = head
+
+	slow := dummyNode
+	fast := dummyNode
+
 	for i := 0; i <= n; i++ {
 		fast = fast.Next
 	}
@@ -19,5 +21,5 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 		fast = fast.Next
 	}
 	slow.Next = slow.Next.Next
-	return slow
+	return dummyNode.Next
 }

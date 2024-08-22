@@ -1,5 +1,6 @@
 package btree
 
+// 中序遍历到K个元素
 func kthSmallest(root *TreeNode, k int) int {
 	var stack []*TreeNode
 	for len(stack) > 0 || root != nil {

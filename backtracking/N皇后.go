@@ -20,15 +20,15 @@ func dfcSolveNQueens(row int, chessBoard [][]string, res *[][]string) {
 		return
 	}
 
-	for i := 0; i < len(chessBoard); i++ {
+	for cell := 0; cell < len(chessBoard); cell++ {
 		//每一行从左向右 放一个棋 检查当前位置是否能放
-		if isValidPos(chessBoard, row, i) {
+		if isValidPos(chessBoard, row, cell) {
 			//如果放了之后 当前行就不能放了
-			chessBoard[row][i] = "Q"
+			chessBoard[row][cell] = "Q"
 			//然后去下一行尝试
 			dfcSolveNQueens(row+1, chessBoard, res)
 			//下一行尝试完了之后 恢复
-			chessBoard[row][i] = "."
+			chessBoard[row][cell] = "."
 		}
 	}
 }

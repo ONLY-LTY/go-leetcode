@@ -20,6 +20,7 @@ func generate(numRows int) [][]int {
 			if j == 0 || j == i {
 				row = append(row, 1)
 			} else if i > 1 {
+				//左上方和右上方的数的和
 				row = append(row, result[i-1][j-1]+result[i-1][j])
 			}
 		}

@@ -115,8 +115,8 @@ func rob3(root *btree.TreeNode) int {
 }
 
 // dp 返回一个大小为 2 的数组
-// arr[0] 表示不抢 node 的话，得到的最大钱数
-// arr[1] 表示抢 node 的话，得到的最大钱数
+// dp[0] 表示不抢 node 的话，得到的最大钱数
+// dp[1] 表示抢 node 的话，得到的最大钱数
 func dp(node *btree.TreeNode) []int {
 	if node == nil {
 		return []int{0, 0}

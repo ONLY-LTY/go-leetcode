@@ -26,6 +26,7 @@ func isPalindrome(head *ListNode) bool {
 	return true
 }
 
+// 从中间反转链表 然后比较两个链表是否相等
 func isPalindrome2(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return true

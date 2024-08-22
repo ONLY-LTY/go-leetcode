@@ -30,6 +30,7 @@ import "go-leetcode/util"
 // 1 <= text1.length, text2.length <= 1000
 // text1 和 text2 仅由小写英文字符组成。
 func longestCommonSubsequence(text1 string, text2 string) int {
+	//dp[i][j]：长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为dp[i][j]
 	dp := make([][]int, len(text1)+1)
 	for i := 0; i < len(dp); i++ {
 		dp[i] = make([]int, len(text2)+1)
@@ -37,8 +38,11 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	for i := 1; i <= len(text1); i++ {
 		for j := 1; j <= len(text2); j++ {
 			if text1[i-1] == text2[j-1] {
+				//如果text1[i - 1] 与 text2[j - 1]相同，那么找到了一个公共元素，所以dp[i][j] = dp[i - 1][j - 1] + 1;
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
+				//如果text1[i - 1] 与 text2[j - 1]不相同
+				//那就看看text1[0, i - 2]与text2[0, j - 1]的最长公共子序列 和 text1[0, i - 1]与text2[0, j - 2]的最长公共子序列，取最大的。
 				dp[i][j] = util.Max(dp[i-1][j], dp[i][j-1])
 			}
 		}

@@ -24,7 +24,9 @@ func canPartition(nums []int) bool {
 	}
 	target := sum / 2
 	dp := make([]int, target+1)
+	//遍历物品 这里可以看做物品的重量和价值相等
 	for i := 0; i < len(nums); i++ {
+		//倒序遍历背包
 		for j := target; j >= nums[i]; j-- {
 			dp[j] = util.Max(dp[j], dp[j-nums[i]]+nums[i])
 		}

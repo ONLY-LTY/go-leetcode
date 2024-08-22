@@ -35,7 +35,7 @@ func numSquares(n int) int {
 		//当和为5的时候 有两种情况 5-1*1=4 5—2*2=1 其中第一种值为1+dp[4]=2 第二种值为1+dp[1]=1 两种区最小值为dp[5]=2
 		//当和为6的时候 有两种情况 6-1*1=5 6—2*2=2 其中第一种值为1+dp[5]=3 第二种值为1+dp[2]=3 两种区最小值为dp[4]=3
 		for j := 1; j*j <= i; j++ {
-			dp[i] = util.Min(dp[i-j*j]+1, dp[i])
+			dp[i] = util.Min(dp[i], dp[i-j*j]+1)
 		}
 	}
 	return dp[n]

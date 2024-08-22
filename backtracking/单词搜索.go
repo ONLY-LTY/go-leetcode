@@ -12,12 +12,14 @@ import "go-leetcode/graph"
 func exist(board [][]byte, word string) bool {
 	r := len(board)
 	c := len(board[0])
+	//初始化访问标记二维数组
 	visited := make([][]bool, r)
 	for i := 0; i < r; i++ {
 		visited[i] = make([]bool, c)
 	}
 	for i := 0; i < r; i++ {
 		for j := 0; j < c; j++ {
+			//找到开始位置 进行回溯
 			if board[i][j] == word[0] &&
 				dfsSearch(board, visited, i, j, 0, word) {
 				return true
