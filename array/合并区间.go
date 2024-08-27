@@ -33,7 +33,9 @@ func merge(intervals [][]int) [][]int {
 			currentIndex++
 			res = append(res, intervals[i])
 		} else {
-			//合并区间 [[1,4],[2,3]] 右区间需要取最大值
+			//合并区间 [[1,4],[2,3]]
+			//左区间不变
+			//右区间需要取最大值
 			res[currentIndex][1] = util.Max(intervals[i][1], res[currentIndex][1])
 		}
 	}

@@ -1,4 +1,4 @@
-package dp
+package slidingwindow
 
 import (
 	"github.com/stretchr/testify/assert"

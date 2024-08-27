@@ -1,4 +1,4 @@
-package string
+package slidingwindow
 
 // lengthOfLongestSubstring
 // 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串的长度。

@@ -114,6 +114,7 @@ func rob3(root *btree.TreeNode) int {
 	return util.Max(res[0], res[1])
 }
 
+// 后续遍历
 // dp 返回一个大小为 2 的数组
 // dp[0] 表示不抢 node 的话，得到的最大钱数
 // dp[1] 表示抢 node 的话，得到的最大钱数
