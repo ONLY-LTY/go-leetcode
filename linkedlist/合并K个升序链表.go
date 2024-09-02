@@ -11,7 +11,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	right := len(lists) - 1
 	for right > 0 {
 		for left < right {
-			//两两合并
+			//L R两两合并 并赋值给L
 			lists[left] = mergeTwoLists(lists[left], lists[right])
 			left++
 			right--

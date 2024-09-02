@@ -33,6 +33,7 @@ func coinChange2(coins []int, amount int) int {
 	dp[0] = 1
 	//遍历物品
 	for i := 0; i < len(coins); i++ {
+		//遍历背包
 		for j := coins[i]; j <= amount; j++ {
 			dp[j] = dp[j] + dp[j-coins[i]]
 		}

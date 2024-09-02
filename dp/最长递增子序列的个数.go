@@ -22,6 +22,7 @@ func findNumberOfLIS(nums []int) int {
 	}
 	//dp[i] 表示以num[i]结尾的最长递增子序列长度
 	dp := make([]int, len(nums))
+	//c[i] 表示以nums[i]结尾的最长递增子序列的组合数
 	c := make([]int, len(nums))
 	for i := 0; i < len(dp); i++ {
 		dp[i] = 1

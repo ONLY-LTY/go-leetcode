@@ -1,4 +1,4 @@
-package array
+package dp
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -8,7 +8,9 @@ import (
 func TestMaxSubArray(t *testing.T) {
 	nums := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
 	assert.Equal(t, 6, maxSubArray(nums))
+	assert.Equal(t, 6, maxSubArray2(nums))
 
 	nums = []int{5, 4, -1, 7, 8}
 	assert.Equal(t, 23, maxSubArray(nums))
+	assert.Equal(t, 23, maxSubArray2(nums))
 }
