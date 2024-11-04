@@ -30,7 +30,7 @@ func mergeArray(nums1 []int, m int, nums2 []int, n int) {
 			p1--
 		} else {
 			// 如果 p1 < 0，那么走 else 分支，把 nums2 合并到 nums1 中
-			nums1[p] = nums1[p2]
+			nums1[p] = nums2[p2]
 			p2--
 		}
 		// 下一个要填入的位置

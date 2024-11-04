@@ -30,10 +30,7 @@ func rotate(nums []int, k int) {
 
 func reverseInt(nums []int, begin, end int) {
 	for begin < end {
-		tmp := nums[begin]
-		nums[begin] = nums[end]
-		nums[end] = tmp
-
+		nums[begin], nums[end] = nums[end], nums[begin]
 		begin++
 		end--
 	}
