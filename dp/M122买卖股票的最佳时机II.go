@@ -37,7 +37,7 @@ func maxProfit2(prices []int) int {
 		dp[i][0] = util.Max(dp[i-1][0], dp[i-1][1]+prices[i])
 		//今天持有股票 最大利润
 		//1. 昨天本来就持有股票 今天不操作
-		//2. 昨天不持有股票，今天买入
+		//2. 昨天不du持有股票，今天买入
 		dp[i][1] = util.Max(dp[i-1][1], dp[i-1][0]-prices[i])
 	}
 
