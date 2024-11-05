@@ -19,18 +19,19 @@ package string
 // 1 <= strs.length <= 200
 // 0 <= strs[i].length <= 200
 // strs[i] 仅由小写英文字母组成
-func longestCommonPrefix(strs []string) string {
-	if len(strs) == 0 {
+func longestCommonPrefix(str []string) string {
+	if len(str) == 0 {
 		return ""
 	}
 	//用第一个字符串
-	for i := 0; i < len(strs[0]); i++ {
+	for i := 0; i < len(str[0]); i++ {
 		//和后面的每个字符串做比较
-		for j := 1; j < len(strs); j++ {
-			if i == len(strs[j]) || strs[j][i] != strs[0][i] {
-				return strs[0][:i]
+		for j := 1; j < len(str); j++ {
+			//如果前i个字符 和 第j个字符串一样长 直接可以返回了
+			if i == len(str[j]) || str[j][i] != str[0][i] {
+				return str[0][:i]
 			}
 		}
 	}
-	return strs[0]
+	return str[0]
 }
