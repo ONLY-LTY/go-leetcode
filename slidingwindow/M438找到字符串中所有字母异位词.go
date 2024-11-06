@@ -29,7 +29,7 @@ func findAnagrams(s string, p string) []int {
 	for i := 0; i < len(p); i++ {
 		pStrCount[p[i]-'a']++
 	}
-	//初始化窗口
+	//初始化窗口 窗口大小为P字符串的长度
 	windowStart := 0
 	windowEnd := 0
 	reset := len(p)
@@ -41,6 +41,7 @@ func findAnagrams(s string, p string) []int {
 		}
 		windowEnd++
 	}
+	//P字符串中的字符个数已经没有了 符合条件
 	if reset == 0 {
 		result = append(result, windowStart)
 	}

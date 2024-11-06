@@ -1,20 +1,21 @@
 package linkedlist
 
-type N struct {
+type Element struct {
 	Key, Val  int
-	Pre, Next *N
+	Pre, Next *Element
 }
 
 type LRUCache struct {
-	head, tail *N
-	cache      map[int]*N
-	Cap        int
+	head, tail *Element
+	cache      map[int]*Element
+	capacity   int
 }
 
 func Constructor(capacity int) LRUCache {
-	return LRUCache{cache: make(map[int]*N), Cap: capacity}
+	return LRUCache{cache: make(map[int]*Element), capacity: capacity}
 }
 
+// Get 访问元素之后 将元素移动到最前面
 func (c *LRUCache) Get(key int) int {
 	if node, ok := c.cache[key]; ok {
 		c.moveToFront(node)
@@ -30,23 +31,25 @@ func (c *LRUCache) Put(key int, value int) {
 		c.moveToFront(node)
 	} else {
 		//新增元素
-		newNode := &N{Val: value, Key: key}
+		newNode := &Element{Val: value, Key: key}
 		c.cache[key] = newNode
 		c.add(newNode)
 	}
 	//超出容量 删除末尾元素
-	if len(c.cache) > c.Cap {
+	if len(c.cache) > c.capacity {
 		delete(c.cache, c.tail.Key)
 		c.remove(c.tail)
 	}
 }
 
-func (c *LRUCache) moveToFront(node *N) {
+// moveToFront 移动到头节点 先删除 在添加
+func (c *LRUCache) moveToFront(node *Element) {
 	c.remove(node)
 	c.add(node)
 }
 
-func (c *LRUCache) add(node *N) {
+// add 新增元素 插入到头结点
+func (c *LRUCache) add(node *Element) {
 	node.Pre = nil
 	node.Next = c.head
 	//如果头结点不为null 头结点的前一个节点指向node
@@ -61,7 +64,7 @@ func (c *LRUCache) add(node *N) {
 	}
 }
 
-func (c *LRUCache) remove(node *N) {
+func (c *LRUCache) remove(node *Element) {
 	//如果删除的是头结点
 	if node == c.head {
 		//头结点指向删除节点的下一个节点

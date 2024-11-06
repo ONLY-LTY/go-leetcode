@@ -6,6 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// CreateBinaryTree 按层构建二叉树 空节点 用-1
 func CreateBinaryTree(arr []int) *TreeNode {
 	// 如果数组为空，则返回nil
 	if len(arr) == 0 {

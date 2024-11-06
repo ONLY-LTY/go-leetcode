@@ -29,24 +29,30 @@ package slidingwindow
 
 // 提示：滑动窗口
 func maximumSubarraySum(nums []int, k int) int64 {
-	ans, sum := 0, 0
-	cnt := map[int]int{}
+	maxWindowSum, currentWindowSum := 0, 0
+	//key：窗口元素 value 元素在窗口出现的次数
+	windowNumCnt := map[int]int{}
 	for _, x := range nums[:k-1] {
-		cnt[x]++
-		sum += x
+		windowNumCnt[x]++
+		currentWindowSum += x
 	}
-	for i := k - 1; i < len(nums); i++ {
-		cnt[nums[i]]++ // 移入元素
-		sum += nums[i]
-		if len(cnt) == k && sum > ans {
-			ans = sum
+	windowStart := 0
+	windowEnd := k - 1
+	for windowEnd < len(nums) {
+		windowNumCnt[nums[windowEnd]]++ // 移入元素
+		currentWindowSum += nums[windowEnd]
+		windowEnd++
+		//窗口元素的个数等于k 说明窗口无重复元素
+		if len(windowNumCnt) == k && currentWindowSum > maxWindowSum {
+			maxWindowSum = currentWindowSum
 		}
-		x := nums[i+1-k]
-		cnt[x]-- // 移出元素
-		if cnt[x] == 0 {
-			delete(cnt, x) // 重要：及时移除个数为 0 的数据
+		windowStarNum := nums[windowStart]
+		windowNumCnt[windowStarNum]-- // 移出元素
+		if windowNumCnt[windowStarNum] == 0 {
+			delete(windowNumCnt, windowStarNum) // 重要：及时移除个数为 0 的数据
 		}
-		sum -= x
+		windowStart++
+		currentWindowSum -= windowStarNum
 	}
-	return int64(ans)
+	return int64(maxWindowSum)
 }

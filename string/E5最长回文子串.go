@@ -13,9 +13,9 @@ package string
 func longestPalindrome(s string) string {
 	res := ""
 	for i := 0; i < len(s); i++ {
-		//单字符中心
+		//单字符中心 aba
 		res1 := lookCenter(s, i, i)
-		//双字符中心
+		//双字符中心 aabb
 		res2 := lookCenter(s, i, i+1)
 
 		//比较最大
