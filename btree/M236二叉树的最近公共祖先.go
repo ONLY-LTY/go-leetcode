@@ -43,6 +43,7 @@ func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
 	return ancestor
 }
 
+// findPath 查找root节点到target节点的路径 保存在path中
 func findPath(root, target *TreeNode, path *[]*TreeNode) bool {
 	if root == nil {
 		return false
