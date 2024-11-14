@@ -29,12 +29,12 @@ func rob2(nums []int) int {
 		return nums[0]
 	}
 	//分成两个数组去解决
-	return util.Max(robRange(nums, 0, len(nums)-2),
-		robRange(nums, 1, len(nums)-1))
+	return util.Max(robRange(nums, 0, len(nums)-1),
+		robRange(nums, 1, len(nums)))
 }
 
 func robRange(nums []int, start int, end int) int {
-	length := end - start + 1
+	length := end - start
 	if length == 1 {
 		return nums[start]
 	}

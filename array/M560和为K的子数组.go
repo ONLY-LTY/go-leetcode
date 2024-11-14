@@ -16,7 +16,7 @@ package array
 func subarraySum(nums []int, k int) int {
 	//数组区间[0,right]的和
 	sumMap := make(map[int]int)
-	//注意这里要默认添加0
+	//重要 注意这里要默认添加0
 	sumMap[0] = 1
 	sum := 0
 	res := 0

@@ -18,8 +18,6 @@ import (
 //
 // 输入：nums = [3,30,34,5,9]
 // 输出："9534330"
-//
-// 提示：
 func largestNumber(nums []int) string {
 	numStr := make([]string, len(nums))
 	for i := 0; i < len(nums); i++ {

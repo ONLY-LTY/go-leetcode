@@ -27,7 +27,7 @@ func removeBlank(s []byte) int {
 				s[slow] = ' '
 				slow++
 			}
-			//从单词起始位置开始复制单词
+			//从单词起始位置开始复制单词 直到遇到空格结束
 			for fast < len(s) && s[fast] != ' ' {
 				s[slow] = s[fast]
 				fast++

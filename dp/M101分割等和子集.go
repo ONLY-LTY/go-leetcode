@@ -19,6 +19,7 @@ func canPartition(nums []int) bool {
 	for i := 0; i < len(nums); i++ {
 		sum = sum + nums[i]
 	}
+	// 和为奇数的话 肯定不可能
 	if sum%2 != 0 {
 		return false
 	}

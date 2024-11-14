@@ -22,6 +22,7 @@ import "go-leetcode/util"
 func maxProduct(nums []int) int {
 	//由于存在负数，那么会导致最大的变最小的，最小的变最大的。因此还需要维护当前最小值min。
 	minimum, maximum, res := nums[0], nums[0], nums[0]
+	//如果初始化数组第一个元素 遍历从index 1开始
 	for i := 1; i < len(nums); i++ {
 		if nums[i] < 0 {
 			maximum, minimum = minimum, maximum

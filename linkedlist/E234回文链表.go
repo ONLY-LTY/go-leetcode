@@ -4,6 +4,13 @@ package linkedlist
 // 给你一个单链表的头节点 head ，请你判断该链表是否为
 // 回文链表：回文 序列是向前和向后读都相同的序列。
 // 如果是，返回 true ；否则，返回 false 。
+// 示例 1：
+// 输入：head = [1,2,2,1]
+// 输出：true
+//
+// 示例 2：
+// 输入：head = [1,2]
+// 输出：false
 func isPalindrome(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return true
